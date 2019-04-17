@@ -3,7 +3,7 @@
 //   File    :   main.cpp
 //   Author  :   eezyl
 //   Synopsis:   codeforces
-//   Address :   https://codeforces.com/problemset/problem/151/A
+//   Address :   https://codeforces.com/problemset/problem/313/B
 //   Date    :   2019/04/17 (upload date)
 //
 //********************************************************
@@ -20,7 +20,7 @@
 #include <iostream>
 #include <cmath>
 #include <stack>
-#include <unordered_map>
+#include <bitset>
 using namespace std;
 
 typedef long long LL;
@@ -33,21 +33,30 @@ int main()
 {
     #ifdef LOCAL
         freopen("data.in", "r", stdin);
-        while (!feof(stdin)) {
+        //freopen("data.out", "w", stdout);
     #endif // LOCAL
 
-    int n, k, l, c, d, p, nl, np;
-    scanf("%d %d %d %d %d %d %d %d", &n, &k, &l, &c, &d, &p, &nl, &np);
+    char str[100005];
+    scanf(" %s", str);
+    int n = strlen(str);
 
-    int milk = k*l;
-    int lime = c*d;
+    vector<int> v(n+1, 0);
+    int sum = 0;
+    for (int i = 1; i < n; i++) {
+        if (str[i] == str[i-1])
+            sum++;
+        v[i] = sum;
+    }
 
-    int min_ingre;
-    min_ingre = min(milk/nl, lime);
-    min_ingre = min(min_ingre, p/np);
-    printf("%d\n", min_ingre/n);
+    int m;
+    scanf("%d", &m);
+    for (int i = 0; i < m; i++) {
+        int a, b;
+        scanf("%d %d", &a, &b);
+        printf("%d\n", v[b-1] - v[a-1]);
+    }
+
     #ifdef LOCAL
-        }
         printf("Time used = %.2lf\n", (double)clock() / CLOCKS_PER_SEC);
     #endif // LOCAL
     return 0;

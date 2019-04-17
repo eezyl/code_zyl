@@ -3,10 +3,12 @@
 //   File    :   main.cpp
 //   Author  :   eezyl
 //   Synopsis:   codeforces
-//   Address :   https://codeforces.com/problemset/problem/151/A
+//   Address :   https://codeforces.com/problemset/problem/230/A
 //   Date    :   2019/04/17 (upload date)
 //
 //********************************************************
+
+//#define LOCAL
 
 #include <cstdlib>
 #include <cstdio>
@@ -16,38 +18,44 @@
 #include <set>
 #include <string>
 #include <algorithm>
-#include <map>
-#include <iostream>
-#include <cmath>
-#include <stack>
-#include <unordered_map>
+
 using namespace std;
 
 typedef long long LL;
-
-const int INF = 1 << 25;
-
-//#define LOCAL
 
 int main()
 {
     #ifdef LOCAL
         freopen("data.in", "r", stdin);
-        while (!feof(stdin)) {
     #endif // LOCAL
 
-    int n, k, l, c, d, p, nl, np;
-    scanf("%d %d %d %d %d %d %d %d", &n, &k, &l, &c, &d, &p, &nl, &np);
 
-    int milk = k*l;
-    int lime = c*d;
+    int s, n;
+    scanf("%d %d", &s, &n);
+    vector<pair<int, int> > v(n);
+    for (int i = 0; i < n; i++)
+    {
+        int x, y;
+        scanf("%d %d", &x, &y);
+        v[i] = make_pair(x, y);
+    }
 
-    int min_ingre;
-    min_ingre = min(milk/nl, lime);
-    min_ingre = min(min_ingre, p/np);
-    printf("%d\n", min_ingre/n);
+    sort(v.begin(), v.end());
+
+    int flag = 1;
+    for (int i = 0; i < n && flag; i++)
+    {
+        if (s <= v[i].first)
+            flag = 0;
+        s += v[i].second;
+    }
+
+    if (flag)
+        printf("YES\n");
+    else
+        printf("NO\n");
+
     #ifdef LOCAL
-        }
         printf("Time used = %.2lf\n", (double)clock() / CLOCKS_PER_SEC);
     #endif // LOCAL
     return 0;

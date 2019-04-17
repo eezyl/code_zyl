@@ -3,10 +3,12 @@
 //   File    :   main.cpp
 //   Author  :   eezyl
 //   Synopsis:   codeforces
-//   Address :   https://codeforces.com/problemset/problem/151/A
+//   Address :   https://codeforces.com/problemset/problem/119/A
 //   Date    :   2019/04/17 (upload date)
 //
 //********************************************************
+
+//#define LOCAL
 
 #include <cstdlib>
 #include <cstdio>
@@ -16,38 +18,48 @@
 #include <set>
 #include <string>
 #include <algorithm>
-#include <map>
-#include <iostream>
-#include <cmath>
-#include <stack>
-#include <unordered_map>
+
 using namespace std;
 
 typedef long long LL;
 
-const int INF = 1 << 25;
-
-//#define LOCAL
+int gcd(int a, int b)
+{
+    if (a < b)
+        swap(a, b);
+    if (b == 0)
+        return a;
+    return gcd (b, a % b);
+}
 
 int main()
 {
     #ifdef LOCAL
         freopen("data.in", "r", stdin);
-        while (!feof(stdin)) {
     #endif // LOCAL
 
-    int n, k, l, c, d, p, nl, np;
-    scanf("%d %d %d %d %d %d %d %d", &n, &k, &l, &c, &d, &p, &nl, &np);
+    int a, b, n;
+    scanf("%d %d %d", &a, &b, &n);
+    int count = 1;
+    while (n)
+    {
+        if (count)
+        {
+            int take = gcd(a, n);
 
-    int milk = k*l;
-    int lime = c*d;
-
-    int min_ingre;
-    min_ingre = min(milk/nl, lime);
-    min_ingre = min(min_ingre, p/np);
-    printf("%d\n", min_ingre/n);
-    #ifdef LOCAL
+            n -= take;
         }
+        else
+        {
+            int take = gcd(b, n);
+
+            n -= take;
+        }
+        count = !count;
+    }
+    printf("%d\n", count);
+
+    #ifdef LOCAL
         printf("Time used = %.2lf\n", (double)clock() / CLOCKS_PER_SEC);
     #endif // LOCAL
     return 0;

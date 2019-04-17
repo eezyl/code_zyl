@@ -3,7 +3,7 @@
 //   File    :   main.cpp
 //   Author  :   eezyl
 //   Synopsis:   codeforces
-//   Address :   https://codeforces.com/problemset/problem/151/A
+//   Address :   https://codeforces.com/problemset/problem/124/A
 //   Date    :   2019/04/17 (upload date)
 //
 //********************************************************
@@ -20,6 +20,7 @@
 #include <iostream>
 #include <cmath>
 #include <stack>
+#include <bitset>
 #include <unordered_map>
 using namespace std;
 
@@ -33,21 +34,21 @@ int main()
 {
     #ifdef LOCAL
         freopen("data.in", "r", stdin);
-        while (!feof(stdin)) {
+        //freopen("data.out", "w", stdout);
     #endif // LOCAL
 
-    int n, k, l, c, d, p, nl, np;
-    scanf("%d %d %d %d %d %d %d %d", &n, &k, &l, &c, &d, &p, &nl, &np);
 
-    int milk = k*l;
-    int lime = c*d;
+    int n, a, b;
+    scanf("%d %d %d", &n, &a, &b);
 
-    int min_ingre;
-    min_ingre = min(milk/nl, lime);
-    min_ingre = min(min_ingre, p/np);
-    printf("%d\n", min_ingre/n);
+    int ans = 0;
+    for (int i = 1; i <= n; i++) {
+        if (i-1 >= a && n-i <=b)
+            ans++;
+    }
+    printf("%d\n", ans);
+
     #ifdef LOCAL
-        }
         printf("Time used = %.2lf\n", (double)clock() / CLOCKS_PER_SEC);
     #endif // LOCAL
     return 0;
