@@ -4,7 +4,7 @@
 //   Author  :   eezyl
 //   Synopsis:   codeforces
 //   Address :   https://codeforces.com/problemset/problem/1154/D
-//   Date    :   2019/04/14
+//   Date    :   2019/04/17
 //
 //********************************************************
 
@@ -72,19 +72,6 @@ int main()
         // printf("%d %d\n", b, a);
     }
     printf("%d\n", ans);
-
-    /*
-    else {
-        int a = 0, b = 0;
-        for (int i = 0; i < n; i++) if (nums[i] - nums[i-1] != 0) {
-            if (a == 0)
-                a = nums[i] - nums[i-1];
-            else if (a != nums[i] - nums[i-1])
-                b = nums[i] - nums[i-1];
-        }
-
-    }
-    */
 
     #ifdef LOCAL
         }

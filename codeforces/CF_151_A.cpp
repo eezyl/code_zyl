@@ -4,7 +4,7 @@
 //   Author  :   eezyl
 //   Synopsis:   codeforces
 //   Address :   https://codeforces.com/problemset/problem/151/A
-//   Date    :   2019/04/14
+//   Date    :   2019/04/14 (upload date)
 //
 //********************************************************
 

@@ -4,7 +4,7 @@
 //   Author  :   eezyl
 //   Synopsis:   codeforces
 //   Address :   https://codeforces.com/problemset/problem/1154/B
-//   Date    :   2019/04/14
+//   Date    :   2019/04/17
 //
 //********************************************************
 
@@ -40,37 +40,30 @@ int main()
     int n;
     scanf("%d", &n);
     vector<int> nums(n);
-    for (int i = 0; i < n; i++)
+    set<int> num_s;
+    for (int i = 0; i < n; i++) {
         scanf("%d", &nums[i]);
+        num_s.insert(nums[i]);
+    }
     sort(nums.begin(), nums.end());
     set<int> s;
+
     for (int i = 1; i < n; i++) if (nums[i] - nums[i-1] != 0)
         s.insert(nums[i] - nums[i-1]);
-    if (n == 1)
-        printf("0\n");
-    else if (s.size() == 0)
+
+    if (num_s.size() == 1)
         printf("0\n");
     else if (s.size() > 1)
         printf("-1\n");
     else if (s.size() == 1) {
         for (auto it: s)
-            if (it%2)
+            if (num_s.size() > 3)
+                printf("-1\n");
+            else if (num_s.size() == 3 || it&1)
                 cout << it << endl;
             else
                 cout << it/2 << endl;
     }
-    /*
-    else {
-        int a = 0, b = 0;
-        for (int i = 0; i < n; i++) if (nums[i] - nums[i-1] != 0) {
-            if (a == 0)
-                a = nums[i] - nums[i-1];
-            else if (a != nums[i] - nums[i-1])
-                b = nums[i] - nums[i-1];
-        }
-
-    }
-    */
 
     #ifdef LOCAL
         }
