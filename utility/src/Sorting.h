@@ -9,8 +9,8 @@
 
 #include <algorithm> // std::sort
 #include <vector>
-#include <cstdlib> // tie
-#include <numeric> // iota
+#include <cstdlib> // std::tie
+#include <numeric> // std::iota
 
 class StudentForSorting {
 public:
