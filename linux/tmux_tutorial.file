@@ -1,0 +1,44 @@
+# 新增
+tmux
+# OR
+tmux new-s <your_session_name>
+
+# session 列表
+tmux ls
+
+# 重新連線 session
+tmux a -t 0
+# OR
+tmux a -t <session_name>
+
+# 刪除 session
+tmux kill-session -t 0
+# OR
+tmux kill-session -t <session_name>
+# OR
+tmux kill-session -a # 全部
+
+# 刪除 tmux server
+tmux kill-server
+
+# 重新命名 session
+tmux rename-session -t 0 <new_session_name>
+
+# 快捷鍵/視窗管理
+C-b ? # Help
+C-b c # 新增視窗
+C-b.  # 視窗命名
+C-b w # 視窗列表
+C-b f # 尋找視窗
+C-b & # 刪除視窗
+C-b % # 垂直分割區塊
+C-b " # 上下分割區塊
+C-b <方向鍵>
+C-b p # 上一個視窗
+C-b n # 下一個視窗 
+C-b <number> # 依照編號切換(編號顯示於狀態列)
+C-b d # 離開 session
+C-b x # 關閉 Pane
+C-d   # 關閉 Pane
+C-b z # 讓一個Pane變全螢幕 再輸入一次回到剛剛尺寸
+
