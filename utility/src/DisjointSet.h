@@ -3,7 +3,7 @@
 //   File    :   DisjointSet.h                            //
 //   Author  :   eezyl                                    //
 //   Synopsis:   data structure: Disjoint Set             //
-//   Date    :   2020/04/13                               //
+//   Date    :   2020/04/17                               //
 //                                                        //
 //********************************************************//
 
@@ -22,14 +22,14 @@ public:
         _rank.resize(_size, 1);
         _parent.resize(_size);
         // =====================================================
-        // initialization: parent[i] = i
+        // initialization: _parent[i] = i
         // =====================================================
         std::iota(_parent.begin(), _parent.end(), 0);
     }
     
     bool isSameSet(int x, int y) { return ( find(x) == find(y) ); }
-    int size() { return _size; }
-    int disjointSize() { return _disjoint_size; }
+    int getSize() { return _size; }
+    int getDisjointSize() { return _disjoint_size; }
     
     // =====================================================
     // find the parent of x with path compression technique
