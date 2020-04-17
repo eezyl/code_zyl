@@ -16,23 +16,36 @@ using std::vector;
 
 class DisjointSet{
 public:
-    DisjointSet(int size) :_size(size) {
+    DisjointSet(int size) 
+        : _size(size), _disjoint_size(size) 
+    {
         _rank.resize(_size, 1);
         _parent.resize(_size);
+        // =====================================================
+        // initialization: parent[i] = i
+        // =====================================================
         std::iota(_parent.begin(), _parent.end(), 0);
     }
     
-    bool isSameSet(int x, int y) {
-        return ( find(x) == find(y) );
-    }
+    bool isSameSet(int x, int y) { return ( find(x) == find(y) ); }
+    int size() { return _size; }
+    int disjointSize() { return _disjoint_size; }
     
-    int find(int x) {
+    // =====================================================
+    // find the parent of x with path compression technique
+    // =====================================================
+    int find(int x) 
+    {
         if (_parent[x] != x)
             _parent[x] = find(_parent[x]);
         return _parent[x];
     }
     
-    void unionElement(int x, int y) {
+    // =====================================================
+    // union two elements with balanced tree technique
+    // =====================================================
+    void unionElement(int x, int y) 
+    {
         int xset = find(x);
         int yset = find(y);
         
@@ -41,15 +54,16 @@ public:
         
         if (_rank[xset] < _rank[yset])
             _parent[xset] = yset;
-        else if (_rank[xset] > _rank[yset])
-            _parent[yset] = xset;
         else {
+            if (_rank[xset] == _rank[yset])
+                ++_rank[xset];
             _parent[yset] = xset;
-            ++_rank[xset];
         }
+        --_disjoint_size;
     }
 private:
     int _size;
+    int _disjoint_size;
     vector<int> _rank;
     vector<int> _parent;
 };
