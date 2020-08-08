@@ -1,3 +1,3 @@
 #!/bin/sh
-dos2unix *.cpp
-mv *.cpp ../codeforces
+dos2unix CF*.cpp
+mv CF*.cpp ../codeforces
