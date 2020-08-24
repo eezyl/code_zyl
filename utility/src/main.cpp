@@ -14,15 +14,14 @@ using namespace std;
 
 
 // =====================================================
-#include "DisjointSet.h"
+#include "BIT.h"
 
 int main()
 {
-    DisjointSet S(10);
-    cout << S.isSameSet(1, 3) << endl;
-    S.unionElement(1, 2);
-    S.unionElement(2, 3);
-    cout << S.isSameSet(1, 3) << endl;
-    
+    vector<int> aaa = {0, 1, 3, 4, 8, 6, 1, 4, 2};
+    BIT<int> b(aaa);
+    cout << b.query(1, 7) << endl;
+    b.update(4, -1);
+    cout << b.query(2, 5) << endl;
     return 0;
 }
