@@ -2,7 +2,7 @@
 //   File    :   main.cpp
 //   Author  :   eezyl
 //   Synopsis:   codeforces/atcoder template
-//   Address :
+//   Address :   https://codeforces.com/contest/1400/problem/B
 //   Date    :   2020/08/25
 // =====================================================
 #pragma GCC optimize("O3")
