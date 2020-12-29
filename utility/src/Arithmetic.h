@@ -119,11 +119,11 @@ T exgcd(T a, T b, T &x, T &y)
         y = 0;
         return a;
     }
-    T r = exgcd(b, a%b, x, y);
-    T temp = y;
-    y = x - (a/b) *y;
-    x = temp;
-    return r;
+    T x1, y1;
+    T g = exgcd(b, a%b, x, y);
+    x = y1;
+    y = x1 - (a/b) *y1;
+    return g;
 }
 // =====================================================
 // Only for floating point, return if they are equal
