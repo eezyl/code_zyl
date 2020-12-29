@@ -108,6 +108,24 @@ long long lcm (long long m, long long n)
 }
 
 // =====================================================
+// Given ax+by=gcd(a,b),
+// return value is gcd(a, b) and x, y (paseed by reference)
+// =====================================================
+template<class T>
+T exgcd(T a, T b, T &x, T &y)
+{
+    if (b == 0) {
+        x = 1;
+        y = 0;
+        return a;
+    }
+    T r = exgcd(b, a%b, x, y);
+    T temp = y;
+    y = x - (a/b) *y;
+    x = temp;
+    return r;
+}
+// =====================================================
 // Only for floating point, return if they are equal
 // =====================================================
 template<class T>

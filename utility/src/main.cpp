@@ -10,6 +10,7 @@
 #include <vector>
 #include <cstdlib>
 #include <algorithm>
+#include "Arithmetic.h"
 using namespace std;
 
 
@@ -18,10 +19,10 @@ using namespace std;
 
 int main()
 {
-    vector<int> aaa = {0, 1, 3, 4, 8, 6, 1, 4, 2};
-    BIT<int> b(aaa);
-    cout << b.query(1, 7) << endl;
-    b.update(4, -1);
-    cout << b.query(2, 5) << endl;
+    int x, y;
+    cout << exgcd(5000, 7, x ,y) << endl;
+    cout << x << endl;
+    cout << y << endl;
+    cout << ((x*-s)%n+n)%n;
     return 0;
 }
