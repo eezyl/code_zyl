@@ -23,6 +23,5 @@ int main()
     cout << exgcd(5000, 7, x ,y) << endl;
     cout << x << endl;
     cout << y << endl;
-    cout << ((x*-s)%n+n)%n;
     return 0;
 }

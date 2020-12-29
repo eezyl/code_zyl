@@ -120,7 +120,7 @@ T exgcd(T a, T b, T &x, T &y)
         return a;
     }
     T x1, y1;
-    T g = exgcd(b, a%b, x, y);
+    T g = exgcd(b, a%b, x1, y1);
     x = y1;
     y = x1 - (a/b) *y1;
     return g;
