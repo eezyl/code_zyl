@@ -125,6 +125,22 @@ T exgcd(T a, T b, T &x, T &y)
     y = x1 - (a/b) *y1;
     return g;
 }
+
+// =====================================================
+// Solve ax+by=c, return false if there is no solution
+// =====================================================
+template<class T>
+bool exgcd(T a, T b, T c, T &x0, T &y0, T &g)
+{
+    g = exgcd(abs(a), abs(b), x0, y0);
+    if (c % g) return false;
+    x0 /= g;
+    y0 /= g;
+    if (a < 0) x0 = -x0;
+    if (b < 0) y0 = -y0;
+    return true;
+}
+
 // =====================================================
 // Only for floating point, return if they are equal
 // =====================================================

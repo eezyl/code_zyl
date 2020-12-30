@@ -19,8 +19,8 @@ using namespace std;
 
 int main()
 {
-    int x, y;
-    cout << exgcd(5000, 7, x ,y) << endl;
+    int x, y, g;
+    cout << exgcd(14, 10000, 10000-6, x ,y, g) << endl;
     cout << x << endl;
     cout << y << endl;
     return 0;
