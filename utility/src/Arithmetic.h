@@ -111,31 +111,21 @@ long long lcm (long long m, long long n)
 // Given ax+by=gcd(a,b),
 // return value is gcd(a, b) and x, y (paseed by reference)
 // =====================================================
-template<class T>
-T exgcd(T a, T b, T &x, T &y)
+long long exgcd(long long a, long long b, long long &x, long long &y)
 {
-    if (b == 0) {
-        x = 1;
-        y = 0;
-        return a;
-    }
-    T x1, y1;
-    T g = exgcd(b, a%b, x1, y1);
-    x = y1;
-    y = x1 - (a/b) *y1;
-    return g;
+    if (!b) { x = 1; y = 0; return a; }
+    long long g = exgcd(b, a%b, y, x); y -= (a/b) *x; return g;
 }
 
 // =====================================================
 // Solve ax+by=c, return false if there is no solution
 // =====================================================
-template<class T>
-bool exgcd(T a, T b, T c, T &x0, T &y0, T &g)
+bool find_any_solution(long long a, long long b, long long c, long long &x0, long long &y0, long long &g)
 {
-    g = exgcd(abs(a), abs(b), x0, y0);
+    g = exgcd(std::abs(a), std::abs(b), x0, y0);
     if (c % g) return false;
-    x0 /= g;
-    y0 /= g;
+    x0 *= c / g;
+    y0 *= c / g;
     if (a < 0) x0 = -x0;
     if (b < 0) y0 = -y0;
     return true;

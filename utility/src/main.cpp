@@ -19,9 +19,12 @@ using namespace std;
 
 int main()
 {
-    int x, y, g;
-    cout << exgcd(14, 10000, 10000-6, x ,y, g) << endl;
+    long long x, y, g;
+    cout << find_any_solution(14, 10000, -4, x ,y, g) << endl;
     cout << x << endl;
     cout << y << endl;
+    cout << 14*x + 10000*y << endl;
+    
+    cout << g << endl;
     return 0;
 }
