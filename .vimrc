@@ -1,32 +1,150 @@
-set encoding=utf8        " UTF 8
-set fileencodings=utf8
-syntax enable            " 語法上色
 
-set nu                   " 顯示行號
-set ai                   " 設定自動縮排
-set cursorline           " 突出顯示當前行(水平)
-" set cursorcolumn         " 突出顯示當前列(垂直)
-set scrolloff=3          " 捲動時保留底下三行
+" ========= Basic Settings ==========
+set t_Co=256
+set mouse=a
+set ruler
+set incsearch
+set showcmd
+set showmatch
+set showmode
+set ic
+set nu
+set ai
+set cursorline
+set scrolloff=3
 set wrap
+set ignorecase
+set smartcase
+set wildmenu
 
-set tabstop=4            " 設定Tab長度
-set shiftwidth=4         " 設定縮排長度為4
-set expandtab            " 使用空白取代Tab
-set softtabstop=4        " 使得案退格鍵時可以一次刪掉4個空白
-" set relativenumber       " 顯示相對行號
+set tabstop=4           
+set shiftwidth=4        
+set expandtab           
+set softtabstop=4       
+"set relativenumber      
 
-set ruler                " 設定尺規 右下方會出現資訊
-set incsearch            " 搜索時在未完全輸入完畢要檢索的文本時就開始檢索，可以使用 ctrl+n 來達成自動補完的功
-set showmatch            " 顯示括號配對情況
-set ic                   " 搜尋不區分大小寫
+set paste " to avoid being messy when paste 
 
-inoremap ( ()<Esc>i
-inoremap " ""<Esc>i
-inoremap ' ''<Esc>i
-inoremap [ []<Esc>i
-inoremap { {}<Esc>i
+set backspace=indent,eol,start
+colorscheme torte
+filetype on
+filetype plugin indent on
+syntax on      
 
+" inoremap ( ()<Esc>i
+" inoremap " ""<Esc>i
+" inoremap ' ''<Esc>i
+" inoremap [ []<Esc>i
+" inoremap { {}<Esc>i
 " inoremap { {<CR>}<Esc>ko
 " inoremap {{ {}<ESC>i
 
-filetype indent on        " 啟用依照檔案類型，決定自動縮排樣式的功能
+set hlsearch
+" mapping
+nnoremap <CR> :nohlsearch<CR><CR>
+
+
+" ========== advanced settings ==========
+
+" use F4 to vsplit source and header file
+map <F4> :call CurtineIncVsp()<CR>
+" use F5 to switch source and header file
+map <F5> :call CurtineIncSw()<CR>
+
+" use "f" to show current function
+fun! ShowFuncName()
+  let lnum = line(".")
+  let col = col(".")
+  echohl ModeMsg
+  echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bW'))
+  echohl None
+  call search("\\%" . lnum . "l" . "\\%" . col . "c")
+endfun
+map f :call ShowFuncName() <CR>
+
+set tags=./tags,./TAGS,tags;~,TAGS;~
+
+" ======= cscope settings begin =======
+" set nocscopeverbose
+" so ~/config/cscope/cscope_maps.vim
+
+" function! Create_cscope_file(execfile)
+"     exe "! bash" a:execfile a:execfile
+" endfunction
+"
+" function! Create_cscope_out(cscope_files)
+"     exe "! cscope -bRqk -i" a:cscope_files
+" endfunction
+"
+" if has("cscope")
+"     let cscope_exec=findfile("cscope.sh", ".;")
+"     if !empty(cscope_exec)
+"         if cscope_exec ==? "cscope.sh"
+"             set csre
+"         endif
+"         silent call Create_cscope_file(cscope_exec)
+"         let cscope_files=findfile("cscope.files", ".;")
+"         if !empty(cscope_files) && filereadable(cscope_files)
+"             silent call Create_cscope_out(cscope_files)
+"             let cscope_out=findfile("cscope.out", ".;")
+"             if !empty(cscope_out) && filereadable(cscope_out)
+"                 silent exe "cs add" cscope_out
+"             endif
+"         endif
+"     endif
+" endif
+" ======= cscope settings end =======
+
+" ======= statusline begin =======
+set laststatus=2
+"set statusline="%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
+set statusline=%f       "the filename
+set statusline+=%=      "left/right separator
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%5c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+" ======= statusline end =======
+
+
+" taglist settings
+nmap <F8> :TlistToggle<CR><CR>
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+set ut=100
+
+nmap <F9> :NERDTree<CR><CR>
+
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+" Make sure you use single quotes
+
+" plugin for quick comment 
+  Plug 'preservim/nerdcommenter'
+  " Add spaces after comment delimiters by default
+  let g:NERDSpaceDelims = 1
+  " Use compact syntax for prettified multi-line comments
+  let g:NERDCompactSexyComs = 1
+  " Align line-wise comment delimiters flush left instead of following code indentation
+  let g:NERDDefaultAlign = 'left'
+  " Allow commenting and inverting empty lines (useful when commenting a region)
+  let g:NERDCommentEmptyLines = 1
+  " Enable trimming of trailing whitespace when uncommenting
+  let g:NERDTrimTrailingWhitespace = 1
+  " Enable NERDCommenterToggle to check all selected lines is commented or not
+  let g:NERDToggleCheckAllLines = 1
+  map <C-a> <plug>NERDCommenterToggle
+
+  " Install NERDTree
+  Plug 'preservim/nerdtree'
+  " fzf finder
+  " Plug 'junegunn/fzf'
+
+call plug#end()
