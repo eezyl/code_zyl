@@ -1,0 +1,9 @@
+#!/bin/csh
+# Author: zylin
+# Email: zylin@eda.ee.ntu.edu.tw
+
+
+alias du           'du -skh'
+alias mv           'mv -i'
+alias cp           'cp -rf'
+alias rm           'rm -rf'

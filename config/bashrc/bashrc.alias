@@ -1,0 +1,53 @@
+#!/bin/bash
+# Author: zylin
+# Email:  zylin@eda.ee.ntu.edu.tw
+
+# path
+alias gmc="cd ~/code_zyl/" # go my code
+
+
+
+
+alias rc-alias="vim ~/config/bashrc/bashrc.alias"
+alias rc-vimrc="vim ~/.vimrc"
+alias so-alias="source ~/config/bashrc/bashrc.alias"
+
+# re-define
+alias du='du -skh '
+alias mv='mv -i '
+alias rm='rm -rf '
+
+# useful alias
+alias b='cd ..'
+alias m='more'
+alias v='vim'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ..2='cd ../..'
+alias ..3='cd ../../..'
+alias ..4='cd ../../../..'
+alias ..5='cd ../../../../..'
+alias sl='ls'
+alias ll='ls -l'
+alias la='ls -la'
+alias lr='ls -ltr'
+alias md='mkdir -vp'
+alias so='source'
+alias wh='which'
+alias mr='more *readme'
+alias findi='find -iname '
+alias hi='history'
+alias check_mem='/usr/bin/du -h --max-depth=1'
+alias untar='tar -xvf \!*'
+alias untgz='tar -zxvf \!*'
+
+# grep
+alias grep="grep  --color=auto -n"
+alias egrep="egrep --color=auto -n"
+alias fgrep="fgrep --color=auto -n"
+
+# ctags / cscope
+alias cscope='cscope -Rbkq'
+# alias ctags='ctags -R --extras=+q --exclude=include --exclude=prog --exclude=export'
+alias auto-ctags='ctags; cscope; mkid >& /dev/null'
